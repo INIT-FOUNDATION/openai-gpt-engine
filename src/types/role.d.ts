@@ -1,0 +1,1 @@
+type role = "system" | "assistant" | "user";
