@@ -1,3 +1,9 @@
-export * as envUtils from "./envConfig";
-export * as loggerUtils from "./loggerUtils";
-export * as axiosUtils from "./axiosUtils";
+import { loggerUtils } from "./loggerUtils";
+import * as envUtils from "./envConfig";
+import * as axiosUtils from "./axiosUtils";
+
+export {
+    loggerUtils,
+    envUtils,
+    axiosUtils
+}

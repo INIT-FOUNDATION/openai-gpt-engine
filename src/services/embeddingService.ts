@@ -16,6 +16,7 @@ export const embeddingService = {
             }
 
             const response = await axiosUtils.post("v1/embeddings", embedding);
+            loggerUtils.debug(`embeddingService :: createEmbeddings :: response :: ${JSON.stringify(response)}`);
             return response.data;
         } catch (error) {
             loggerUtils.error(`embeddingService :: createEmbeddings :: embedding :: ${JSON.stringify(embedding)} :: ${error}`);

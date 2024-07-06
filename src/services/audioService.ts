@@ -1,5 +1,5 @@
 import { ISpeechRequest, ITranscriptionRequest, ITranscriptionResponse, ITranslationRequest } from "../types/audio";
-import { loggerUtils } from "../utils/loggerUtils";
+import { loggerUtils } from "../utils";
 import { audioValidations } from "../validations";
 import { axiosUtils } from "../utils";
 
@@ -16,6 +16,7 @@ export const audioService = {
             }
 
             const response = await axiosUtils.post("/v1/audio/speech", speech);
+            loggerUtils.debug(`audioService :: createSpeech :: response :: ${JSON.stringify(response)}`);
             return response.data;
         } catch (error) {
             loggerUtils.error(`audioService :: createSpeech :: speech :: ${JSON.stringify(speech)} :: ${error}`);
@@ -34,6 +35,7 @@ export const audioService = {
             }
 
             const response = await axiosUtils.post("/v1/audio/transcriptions", transcription);
+            loggerUtils.debug(`audioService :: createTranscriptions :: response :: ${JSON.stringify(response)}`);
             return response.data;
         } catch (error) {
             loggerUtils.error(`audioService :: createTranscriptions :: speech :: ${JSON.stringify(transcription)} :: ${error}`);
@@ -52,6 +54,7 @@ export const audioService = {
             }
 
             const response = await axiosUtils.post("/v1/audio/translations", translation);
+            loggerUtils.debug(`audioService :: createTranslations :: response :: ${JSON.stringify(response)}`);
             return response.data;
         } catch (error) {
             loggerUtils.error(`audioService :: createTranslations :: translation :: ${JSON.stringify(translation)} :: ${error}`);

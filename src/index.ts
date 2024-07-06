@@ -1,9 +1,11 @@
 import { 
     audioService as audio,
-    embeddingService as embedding
+    embeddingService as embedding,
+    finetuningService as finetuning
 } from "./services";
 
 export {
     audio,
-    embedding
+    embedding,
+    finetuning
 }
