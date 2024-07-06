@@ -88,5 +88,45 @@ export const finetuningService = {
             loggerUtils.error(`finetuningService :: listFineTuningCheckpoints :: finetuningCheckpointRequest :: ${JSON.stringify(finetuningCheckpointRequest)} :: ${error}`);
             throw error;
         }
+    },
+    retriveFineTuningJob: async (finetuningJobRequest: {
+        fine_tuning_job_id: string,
+    }): Promise<any> => {
+        try {
+            loggerUtils.debug(`finetuningService :: retriveFineTuningJob :: finetuningJobRequest :: ${JSON.stringify(finetuningJobRequest)}`);
+            const { error } = finetuningValidations.validateRetrieveFineTuningJob(finetuningJobRequest);
+            if (error) {
+                if (error.details != null)
+                    throw new Error(error.details[0].message);
+                else new Error(error.message);
+            }
+
+            const response = await axiosUtils.get(`/v1/fine_tuning/jobs/${finetuningJobRequest.fine_tuning_job_id}`);
+            loggerUtils.debug(`finetuningService :: retriveFineTuningJob :: response :: ${JSON.stringify(response)}`);
+            return response.data;
+        } catch (error) {
+            loggerUtils.error(`finetuningService :: retriveFineTuningJob :: finetuningJobRequest :: ${JSON.stringify(finetuningJobRequest)} :: ${error}`);
+            throw error;
+        }
+    },
+    cancelFineTuningJob: async (finetuningJobRequest: {
+        fine_tuning_job_id: string,
+    }): Promise<any> => {
+        try {
+            loggerUtils.debug(`finetuningService :: cancelFineTuningJob :: finetuningJobRequest :: ${JSON.stringify(finetuningJobRequest)}`);
+            const { error } = finetuningValidations.validateCancelFineTuningJob(finetuningJobRequest);
+            if (error) {
+                if (error.details != null)
+                    throw new Error(error.details[0].message);
+                else new Error(error.message);
+            }
+
+            const response = await axiosUtils.post(`/v1/fine_tuning/jobs/${finetuningJobRequest.fine_tuning_job_id}/cancel`);
+            loggerUtils.debug(`finetuningService :: cancelFineTuningJob :: response :: ${JSON.stringify(response)}`);
+            return response.data;
+        } catch (error) {
+            loggerUtils.error(`finetuningService :: cancelFineTuningJob :: finetuningJobRequest :: ${JSON.stringify(finetuningJobRequest)} :: ${error}`);
+            throw error;
+        }
     }
 }

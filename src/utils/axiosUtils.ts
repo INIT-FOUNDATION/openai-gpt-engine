@@ -33,12 +33,12 @@ export const get = async <T>(url: string, config = {}): Promise<ApiResponse<T>> 
     return response;
 };
 
-export const post = async <T>(url: string, data: any, config = {}): Promise<ApiResponse<T>> => {
+export const post = async <T>(url: string, data ?: any, config = {}): Promise<ApiResponse<T>> => {
     const response = await api.post<T>(url, data, config);
     return response;
 };
 
-export const put = async <T>(url: string, data: any, config = {}): Promise<ApiResponse<T>> => {
+export const put = async <T>(url: string, data ?: any, config = {}): Promise<ApiResponse<T>> => {
     const response = await api.put<T>(url, data, config);
     return response;
 };

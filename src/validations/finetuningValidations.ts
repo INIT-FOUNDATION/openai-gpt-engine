@@ -67,9 +67,29 @@ const validateListFineTuningCheckpoints = (finetuningCheckpointsRequest: {
     return finetuningCheckpointsRequestSchema.validate(finetuningCheckpointsRequest);
 };
 
+const validateRetrieveFineTuningJob = (finetuningJobRequest: {
+    fine_tuning_job_id: string
+}): Joi.ValidationResult => {
+    const finetuningJobRequestSchema = Joi.object({
+        fine_tuning_job_id: Joi.string().required()
+    });
+    return finetuningJobRequestSchema.validate(finetuningJobRequest);
+};
+
+const validateCancelFineTuningJob = (finetuningJobRequest: {
+    fine_tuning_job_id: string
+}): Joi.ValidationResult => {
+    const finetuningJobRequestSchema = Joi.object({
+        fine_tuning_job_id: Joi.string().required()
+    });
+    return finetuningJobRequestSchema.validate(finetuningJobRequest);
+};
+
 export {
     validateCreateFineTuningJob,
     validateListFineTuningJobs,
     validateListFineTuningEvents,
-    validateListFineTuningCheckpoints
+    validateListFineTuningCheckpoints,
+    validateRetrieveFineTuningJob,
+    validateCancelFineTuningJob,
 }
